@@ -1,0 +1,184 @@
+        <% flash.each do |name, msg| %>
+            <ul>
+                 <li><%= msg %></li>
+            </ul>
+        <% end %>
+        <%- # ================Header Menu Area =================-%>
+        <header class="header_area">
+            <div class="main_menu">
+            	<nav class="navbar navbar-expand-lg navbar-light">
+					<div class="container box_1620">
+						<%- #  Brand and toggle get grouped for better mobile display -%>
+						<%- #  Home button -%>
+						<a class="pr-3" href="index.html"><i class="fa fa-home" style="font-size:36px"></i> Home</a>	
+						<%- #  Language bar flip mode-%>
+						<div class="flip-box tips">
+							<a onclick="change_language()">
+								<div class="flip-box-inner">
+									<div class="flip-box-front">
+										<img src="img/elements/finnish.png" alt="suomi">
+									</div>
+									<div class="flip-box-back">
+										<img src="img/elements/english.jpg" alt="english">
+									</div>
+								</div>
+							</a>
+							<span class="tiptext">Change to English</span>
+						</div>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<%- #  Collect the nav links, forms, and other content for toggling -%>
+					        <%- #<div class="collapse navbar-collapse offset" id="navbarSupportedContent"> -%>
+                                                <div>
+							<ul class="nav navbar-nav menu_nav ml-auto">
+								<%- # <li class="nav-item active"><a class="nav-link" href="index.html">Etusivu</a></li> -%>
+								<li class="nav-item"><a class="nav-link" href="http://users.metropolia.fi/~vladimg#about">Minusta</a></li> 
+								<li class="nav-item"><a class="nav-link" href="http://users.metropolia.fi/~vladimg#experience">Kokemus</a></li> 
+								<li class="nav-item"><a class="nav-link" href="http://users.metropolia.fi/~vladimg#portfolio">Portfolio</a></li>
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lisää tietoa</a>
+									<ul class="dropdown-menu">
+										<li class="nav-item"><a class="nav-link" href="portfolio.html#sime">SiMe</a></li>
+										<li class="nav-item"><a class="nav-link" href="portfolio.html#olars">Olars Mestarit</a></li>
+										<li class="nav-item"><a class="nav-link" href="portfolio.html#larmix">Larmix</a></li>
+										<li class="nav-item"><a class="nav-link" href="portfolio.html#omlog">OM Logistics</a></li>
+										<li class="nav-item"><a class="nav-link" href="portfolio.html#metropolia">Metropolia</a></li>
+									</ul>
+								</li> 
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Liitteet</a>
+									<ul class="dropdown-menu">
+										<li class="nav-item"><a class="nav-link" href="CV_VladimirGavrilov.pdf" target="_blank">CV</a></li>
+										<li class="nav-item"><a class="nav-link" href="todistukset.pdf" target="_blank">Todistukset</a></li>
+									</ul>
+								</li>  								
+								<li class="nav-item"><a class="nav-link" href="http://users.metropolia.fi/~vladimir/contact.html">Ota yhteyttä</a></li>
+							</ul>
+						</div> 
+					</div>
+            	</nav>
+            </div>
+        </header>
+        <%- # ================Header Menu Area =================-%>
+		
+		<%- # ================Home Banner Area =================-%>
+        <section class="banner_area">
+            <div class="box_1620">
+				<div class="banner_inner d-flex align-items-center">
+					<div class="container">
+						<div class="banner_content text-center">
+							<h2>Ajankohtaista</h2>
+						</div>
+						<div class="main_title">
+							<p>Tässä haluan kertoa minun tärkeä uutisia kokemusta ja uusi taidosta, sekä näyttää minun osamista "Ruby on Rails" käyttämistä tämän sivun avulla</p> 
+						</div>
+					</div>
+				</div>
+            </div>
+        </section>
+        <%- # ================End Home Banner Area =================-%>
+
+        <%- # ================Blog Area =================-%>
+        <section class="blog_area single-post-area p-120">
+            <div class="container">
+                <div class="comment-form">
+                    <h3>Uusi ilmoitus</h3>
+                        <%= form_with model: @new, url: { action: "update" }, method: "put" do |edit_form| %>
+                            <%= fields_for @itemid do |f| %>
+                                <div class="form-group">
+                                    <%= f.text_field :title, :class => 'form-control mb-10' %>
+                                </div>
+                                <div class="form-group">
+                                    <%= f.text_area :description, :class => 'form-control mb-10' %>
+                                </div>
+                            <%= edit_form.submit "Julkaista", :class => 'primary-btn submit_btn' %>
+
+
+                            <% end %>
+                        <% end %>
+
+
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="navigation-area">
+                        <div class="row">
+                            <div class="blog_right_sidebar">
+                                <aside class="single-sidebar-widget newsletter_widget">
+                                    <h4 class="widget_title">Newsletter</h4>
+                                    <p>
+                                    Here, I focus on a range of items and features that we use in life without
+                                    giving them a second thought.
+                                    </p>
+                                    <div class="form-group d-flex flex-row">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                                            </div>
+                                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
+                                        </div>
+                                        <a href="#" class="bbtns">Subcribe</a>
+                                    </div>	
+                                    <p class="text-bottom">You can unsubscribe at any time</p>	
+                                    <div class="br"></div>							
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <%- # ================Blog Area =================-%>
+
+        <%- # ================Footer Area =================-%>
+        <footer class="footer_area p_120">
+        	<div class="container">
+        		<div class="row footer_inner">
+        			<div class="col-lg-5 col-sm-6">
+        				<aside class="f_widget ab_widget">
+        					<div class="f_title">
+        						<h3>About Me</h3>
+        					</div>
+        					<p>
+								I am an result-focused IT junior programmer with the necessary skills in Software development. 
+								I work with Windows and Linux computers on an advanced level and learn quickly any new programs.
+								I am interested in IT technologies and spend a lot of time developing my skills in that area.
+							</p>
+        					<%- #  Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -%>
+                                                <p>
+Copyright &copy;2020 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+
+    <%- #  Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -%> 
+                                        </aside>
+        			</div>
+        			<div class="col-lg-5 col-sm-6">
+        				<aside class="f_widget news_widget">
+        					<div class="f_title">
+        						<h3>Contact me</h3>
+        					</div>
+        					<p><a href="tel:+358449890965">+358 (0) 44 989 09 65<a/></p>
+							<p><a href="mailto:vladimir.gavrilov@hotmail.com">vladimir.gavrilov@hotmail.com</a></p>
+        					
+        				</aside>
+        			</div>
+        			<div class="col-lg-2">
+        				<aside class="f_widget social_widget">
+        					<div class="f_title">
+        						<h3>Follow Me</h3>
+        					</div>
+        					<p>Let us be social</p>
+        					<ul class="list">
+        						<li><a href="https://www.instagram.com/vld.gvrl/"><i class="fa fa-instagram"></i></a></li>
+        						<li><a href="https://www.linkedin.com/in/vladimir-gavrilov-53055112a/"><i class="fa fa-linkedin"></i></a></li>
+        						<li><a href="https://youtu.be/PsJgw7sRsuc"><i class="fa fa-youtube"></i></a></li>
+								<li><a href="https://github.com/vldgvrl"><i class="fa fa-github"></i></a></li>
+        					</ul>
+        				</aside>
+        			</div>
+        		</div>
+        	</div>
+        </footer>
+        <%- # ================End Footer Area =================-%>

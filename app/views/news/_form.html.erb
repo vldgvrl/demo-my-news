@@ -1,0 +1,11 @@
+<%= form_with  model: @newsitemas  do |f| %>
+    <div class="form-group">
+        <%= f.text_field :title, :class => 'form-control mb-10', value: @itemid.title %>
+    </div>
+    <div class="form-group">
+        <%= f.text_area :description, :class => 'form-control mb-10', value: @itemid.description %>
+    </div>
+<%= f.submit "Julkaista", :class => 'primary-btn submit_btn' %>
+
+
+<% end %>
