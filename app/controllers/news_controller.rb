@@ -16,12 +16,14 @@ class NewsController < ApplicationController
  
     def create
         @newsitem = New.new(title: params[:title], description: params[:description])
+        @newsitem.user = User.first
         if @newsitem.save
             puts "Yes it was saved"
             flash[:notice] = "Item oli tallennetu"
             redirect_to root_path
         else
             puts 'Not saved'
+            render 'new'
             flash[:alert] = "Item ei ole tallennetu"
             redirect_to root_path
         end
