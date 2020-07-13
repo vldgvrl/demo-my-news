@@ -1,85 +1,3 @@
-        <% @newsitem = New.new %>
-        <% if @newsitem.errors.any? %>
-         <div class="row">
-          <div class="col-xs-8 col-xs-offset-2">
-           <div class="panel panel-danger">
-            <div class="panel-heading">
-             <h2 class="panel-title">
-              <%= pluralize(@newsitem.errors.count, "error") %>
-              prohibited this article from being saved:
-             </h2>
-             <div class="panel-body">
-              <ul>
-               <% @newsitem.errors.full_messages.each do |msg|%>
-                <li><%= msg %></li>
-               <% end %>
-              </ul>
-             </div>
-            </div>
-           </div>
-          </div>
-         </div>
-        <% end %>
-        <%- # ================Header Menu Area =================-%>
-        <header class="header_area">
-            <div class="main_menu">
-            	<nav class="navbar navbar-expand-lg navbar-light">
-					<div class="container box_1620">
-						<%- #  Brand and toggle get grouped for better mobile display -%>
-						<%- #  Home button -%>
-						<a class="pr-3" href="index.html"><i class="fa fa-home" style="font-size:36px"></i> Home</a>	
-						<%- #  Language bar flip mode-%>
-						<div class="flip-box tips">
-							<a onclick="change_language()">
-								<div class="flip-box-inner">
-									<div class="flip-box-front">
-										<img src="img/elements/finnish.png" alt="suomi">
-									</div>
-									<div class="flip-box-back">
-										<img src="img/elements/english.jpg" alt="english">
-									</div>
-								</div>
-							</a>
-							<span class="tiptext">Change to English</span>
-						</div>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<%- #  Collect the nav links, forms, and other content for toggling -%>
-					        <%- #<div class="collapse navbar-collapse offset" id="navbarSupportedContent"> -%>
-                                                <div>
-							<ul class="nav navbar-nav menu_nav ml-auto">
-								<%- # <li class="nav-item active"><a class="nav-link" href="index.html">Etusivu</a></li> -%>
-								<li class="nav-item"><a class="nav-link" href="http://users.metropolia.fi/~vladimg#about">Minusta</a></li> 
-								<li class="nav-item"><a class="nav-link" href="http://users.metropolia.fi/~vladimg#experience">Kokemus</a></li> 
-								<li class="nav-item"><a class="nav-link" href="http://users.metropolia.fi/~vladimg#portfolio">Portfolio</a></li>
-								<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lisää tietoa</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="portfolio.html#sime">SiMe</a></li>
-										<li class="nav-item"><a class="nav-link" href="portfolio.html#olars">Olars Mestarit</a></li>
-										<li class="nav-item"><a class="nav-link" href="portfolio.html#larmix">Larmix</a></li>
-										<li class="nav-item"><a class="nav-link" href="portfolio.html#omlog">OM Logistics</a></li>
-										<li class="nav-item"><a class="nav-link" href="portfolio.html#metropolia">Metropolia</a></li>
-									</ul>
-								</li> 
-								<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Liitteet</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="CV_VladimirGavrilov.pdf" target="_blank">CV</a></li>
-										<li class="nav-item"><a class="nav-link" href="todistukset.pdf" target="_blank">Todistukset</a></li>
-									</ul>
-								</li>  								
-								<li class="nav-item"><a class="nav-link" href="http://users.metropolia.fi/~vladimir/contact.html">Ota yhteyttä</a></li>
-							</ul>
-						</div> 
-					</div>
-            	</nav>
-            </div>
-        </header>
-        <%- # ================Header Menu Area =================-%>
 		
 		<%- # ================Home Banner Area =================-%>
         <section class="banner_area">
@@ -87,7 +5,9 @@
 				<div class="banner_inner d-flex align-items-center">
 					<div class="container">
 						<div class="banner_content text-center">
-							<h2>Ajankohtaista</h2>
+							<h2>
+                                                            <%= link_to "Ajankohtaista", root_path  %>
+                                                        </h2>
 						</div>
 						<div class="main_title">
 							<p>Tässä haluan kertoa minun tärkeä uutisia kokemusta ja uusi taidosta, sekä näyttää minun osamista "Ruby on Rails" käyttämistä tämän sivun avulla</p> 
@@ -103,7 +23,7 @@
             <div class="container">
                 <div class="comment-form">
                     <h3>Uusi ilmoitus</h3>
-                        <%= form_with  model: @new do |f| %>
+                        <%= form_with  model: @newsitem do |f| %>
                             <div class="form-group">
                                 <%= f.text_field :title, :class => 'form-control mb-10' %>
                             </div>
@@ -111,17 +31,11 @@
                                 <%= f.text_area :description, :class => 'form-control mb-10' %>
                             </div>
                         <%= f.submit "Julkaista", :class => 'primary-btn submit_btn' %>
-
-                        
                         <% end %>
-
-
-
                 </div>
                 <div class="row">
                     <div class="col-lg-8 posts-list">
-                        <%- #  One article section -%>
-                        <%= @newsitems.each do |newsitem| %>
+                        <% @newsitems.each do |newsitem| %>
                         <div class="single-post row">
                             <div class="navigation-area">
                                 <ul>
@@ -139,6 +53,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-9 col-md-9 blog_details">
+                                        <h1><%= newsitem.id %></h1>
                                         <h2><%= newsitem.title %></h2>
                                     </div>
                                 </div>
@@ -150,7 +65,6 @@
                             </div>
                         </div>
                         <% end %>
-                        <%- #  One article section ends -%>
                 </div>
                 <div class="col-lg-4">
                     <div class="navigation-area">

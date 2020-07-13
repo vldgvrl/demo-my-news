@@ -15,12 +15,15 @@ class NewsController < ApplicationController
     end
  
     def create
-        @newsitem = New.new(news_params)
+        @newsitem = New.new(title: params[:title], description: params[:description])
         if @newsitem.save
             puts "Yes it was saved"
+            flash[:notice] = "Item oli tallennetu"
             redirect_to root_path
         else
-            render new
+            puts 'Not saved'
+            flash[:alert] = "Item ei ole tallennetu"
+            redirect_to root_path
         end
     end
 
@@ -34,7 +37,11 @@ class NewsController < ApplicationController
         puts 'Json string'
         puts params[:new]
         @itemid.update(title: params[:new][:title], description: params[:new][:description])
-        @itemid.save
+        if @itemid.save
+            flash[:notice] = "Uutinen on päivitetty"
+        else
+            flash[:alert] = "Uutinen ei ole päivitetty!"
+        end
         redirect_to root_path
     end
 
@@ -45,9 +52,13 @@ class NewsController < ApplicationController
     end
 
     def destroy
-        @itemid.destroy
-        flash.now[:notice] = "Item oli poistettu"
-        redirect_to root_path
+        if @itemid.destroy
+            flash[:notice] = "Item oli poistettu"
+            redirect_to root_path
+        else
+            flash[:alert] = "Item ei ole poistettu"
+            redirect_to root_path
+        end
     end
 
 
