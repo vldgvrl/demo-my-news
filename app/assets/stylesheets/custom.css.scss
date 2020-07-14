@@ -1,10 +1,5 @@
 @import "bootstrap";
 
-.list {
-  list-style: none;
-  margin: 0px;
-  padding: 0px; }
-
 a {
   text-decoration: none;
   transition: all 0.3s ease-in-out; }
@@ -103,7 +98,7 @@ button:focus {
     .header_area .navbar .nav .nav-item {
       margin-right: 45px; }
       .header_area .navbar .nav .nav-item .nav-link {
-        font: 500 12px/120px "Roboto", sans-serif;
+        font: 500 12px/60px "Roboto", sans-serif;
         text-transform: uppercase;
         color: #fff;
         padding: 0px;
@@ -333,28 +328,27 @@ button:focus {
   margin: auto; }
 
 .banner_area {
+  background-color: #fff;
   position: relative;
   z-index: 1;
-  min-height: 350px;
   background-image: -moz-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
   background-image: -webkit-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
   background-image: -ms-linear-gradient(0deg, #766dff 0%, #88f3ff 100%);
-  margin-bottom: 120px; }
+  }
   .banner_area .box_1620 {
-    background: #fff;
-    min-height: 360px;
+    min-height: 250px;
     border-radius: 12px;
     position: relative;
     bottom: -120px;
-    box-shadow: 0px 20px 80px 0px rgba(153, 153, 153, 0.3); }
+    }
   .banner_area .banner_inner {
     position: relative;
     overflow: hidden;
     width: 100%;
-    min-height: 360px;
+    min-height: 200px;
     z-index: 1; }
     .banner_area .banner_inner .banner_content h2 {
-      color: #222222;
+      color: #000;
       font-size: 48px;
       font-family: "Heebo", sans-serif;
       margin-bottom: 0px;
@@ -756,6 +750,10 @@ button:focus {
   border-color: #eee; }
 
 /*============ Start Blog Single Styles  =============*/
+.single-post-area  {
+  box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  }
 .single-post-area .social-links {
   padding-top: 10px; }
   .single-post-area .social-links li {
@@ -791,7 +789,8 @@ button:focus {
   background: rgba(0, 0, 0, 0.8); }
 .single-post-area .navigation-area {
   border-top: 1px solid #eee;
-  padding-top: 30px;
+  width: 100%;
+  padding-top: 15px;
   margin-top: 60px; }
   .single-post-area .navigation-area p {
     margin-bottom: 0px; }
@@ -1043,64 +1042,14 @@ button:focus {
 
 /* End Reservation Form Area css
 ============================================================================================ */
-/*============== contact_area css ================*/
-.mapBox {
-  height: 420px;
-  margin-bottom: 80px; }
+/*============== Sign in form  ================*/
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
 
-.contact_info .info_item {
-  position: relative;
-  padding-left: 45px; }
-  .contact_info .info_item i {
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 20px;
-    line-height: 24px;
-    color: #766dff;
-    font-weight: 600; }
-  .contact_info .info_item h6 {
-    font-size: 16px;
-    line-height: 24px;
-    color: "Roboto", sans-serif;
-    font-weight: bold;
-    margin-bottom: 0px;
-    color: #222222; }
-    .contact_info .info_item h6 a {
-      color: #222222; }
-  .contact_info .info_item p {
-    font-size: 14px;
-    line-height: 24px;
-    padding: 2px 0px; }
-
-.contact_form .form-group {
-  margin-bottom: 10px; }
-  .contact_form .form-group .form-control {
-    font-size: 13px;
-    line-height: 26px;
-    color: #999;
-    border: 1px solid #eeeeee;
-    font-family: "Roboto", sans-serif;
-    border-radius: 0px;
-    padding-left: 20px; }
-    .contact_form .form-group .form-control:focus {
-      box-shadow: none;
-      outline: none; }
-    .contact_form .form-group .form-control.placeholder {
-      color: #999; }
-    .contact_form .form-group .form-control:-moz-placeholder {
-      color: #999; }
-    .contact_form .form-group .form-control::-moz-placeholder {
-      color: #999; }
-    .contact_form .form-group .form-control::-webkit-input-placeholder {
-      color: #999; }
-  .contact_form .form-group textarea {
-    resize: none; }
-    .contact_form .form-group textarea.form-control {
-      height: 140px; }
-.contact_form .submit_btn {
-  margin-top: 20px;
-  cursor: pointer; }
 
 /* Contact Success and error Area css
 ============================================================================================ */

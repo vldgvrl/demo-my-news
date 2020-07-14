@@ -1,47 +1,16 @@
-        <% flash.each do |name, msg| %>
-            <ul>
-                 <li><%= msg %></li>
-            </ul>
-        <% end %>
-		<%- # ================Home Banner Area =================-%>
-        <section class="banner_area">
-            <div class="box_1620">
-				<div class="text-center">
-					<div class="container">
-						<div class="banner_content text-center">
-							<h2> Viestieditori</h2>
-						</div>
-						<div class="main_title">
-							<p>Tämän lomakeen avulla voit muokkaa jo oleva viesti</p>
-                                                        <p><%= link_to "<- Palaa ajankohtaista-sivulle", root_path %></p>
-						</div>
-					</div>
-				</div>
-            </div>
-        </section>
-        <%- # ================End Home Banner Area =================-%>
-
-        <%- # ================Blog Area =================-%>
         <section class="blog_area single-post-area p-120">
             <div class="container">
                 <div class="comment-form">
-                    <h3>Muokkaa viesti</h3>
-                        <%= form_with model: @new, url: { action: "update" }, method: "put" do |edit_form| %>
-                            <%= fields_for @itemid do |f| %>
-                                <div class="form-group">
-                                    <%= f.text_field :title, :class => 'form-control mb-10' %>
-                                </div>
-                                <div class="form-group">
-                                    <%= f.text_area :description, :class => 'form-control mb-10' %>
-                                </div>
-                            <%= edit_form.submit "Julkaista", :class => 'primary-btn submit_btn' %>
-
-
-                            <% end %>
+                    <h3>Kirjaudu sisään</h3>
+                        <%= form_with  model: @session, url: login_path do |f| %>
+                            <div class="form-group">
+                                <%= f.text_field :username, :class => 'form-control mb-10' %>
+                            </div>
+                            <div class="form-group">
+                                <%= f.password_field :password, :class => 'form-control mb-10' %>
+                            </div>
+                        <%= f.submit "Kirjaudu", :class => 'primary-btn submit_btn' %>
                         <% end %>
-
-
-
                 </div>
             </div>
         </section>

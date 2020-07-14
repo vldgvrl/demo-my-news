@@ -1,5 +1,7 @@
 class NewsController < ApplicationController
 
+    before_action :require_user, except: [:index]
+
     before_action :set_item, only: [:update, :edit, :show, :destroy]
 
     def index
@@ -16,15 +18,15 @@ class NewsController < ApplicationController
  
     def create
         @newsitem = New.new(title: params[:title], description: params[:description])
-        @newsitem.user = User.first
+        @newsitem.user = current_user
         if @newsitem.save
             puts "Yes it was saved"
-            flash[:notice] = "Item oli tallennetu"
+            flash[:success] = "Julkaistettu onnistuneesti"
             redirect_to root_path
         else
             puts 'Not saved'
             render 'new'
-            flash[:alert] = "Item ei ole tallennetu"
+            flash[:warning] = "Virhe. Viesti ei ole tallennetu"
             redirect_to root_path
         end
     end
@@ -38,28 +40,41 @@ class NewsController < ApplicationController
         puts params[:new][:description]
         puts 'Json string'
         puts params[:new]
-        @itemid.update(title: params[:new][:title], description: params[:new][:description])
-        if @itemid.save
-            flash[:notice] = "Uutinen on päivitetty"
+        if @itemid.user == current_user
+            @itemid.update(title: params[:new][:title], description: params[:new][:description])
+            if @itemid.save
+                flash[:success] = "Päivitetty onnistuneesti"
+            else
+                flash[:warning] = "Virhe. Viesti ei ole päivitetty!"
+            end
+            redirect_to root_path
         else
-            flash[:alert] = "Uutinen ei ole päivitetty!"
+            flash[:danger] = "Estetty. Ei ole oikeuksia."
+            redirect_to edit_news_path
         end
-        redirect_to root_path
     end
 
     def edit
+        if @itemid.user != current_user
+            flash[:danger] = "Estetty. Ei ole oikeuksia."
+            redirect_to root_path
+        end
     end
 
     def show
     end
 
     def destroy
-        if @itemid.destroy
-            flash[:notice] = "Item oli poistettu"
-            redirect_to root_path
+        if @itemid.user == current_user
+            if @itemid.destroy
+                flash[:success] = "Viesti oli poistettu"
+                redirect_to root_path
+            else
+                flash[:danger] = "Virhe. Viesti ei ole poistettu!"
+                redirect_to root_path
+            end
         else
-            flash[:alert] = "Item ei ole poistettu"
-            redirect_to root_path
+            flash[:danger] = "Estetty. Poistaminen ei onnistunut. Ei ole oikeuksia."
         end
     end
 

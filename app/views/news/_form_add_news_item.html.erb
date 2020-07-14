@@ -1,0 +1,12 @@
+                <div class="comment-form">
+                    <h3>Mitä uutta?</h3>
+                        <%= form_with  model: @newsitem do |f| %>
+                            <div class="form-group">
+                                <%= f.text_field :title, :class => 'form-control mb-10' %>
+                            </div>
+                            <div class="form-group">
+                                <%= f.text_area :description, :class => 'form-control mb-10' %>
+                            </div>
+                        <%= f.submit "Julkaista", :class => 'primary-btn submit_btn' %>
+                        <% end %>
+                </div>

@@ -1,19 +1,13 @@
-        <% flash.each do |name, msg| %>
-            <ul>
-                 <li><%= msg %></li>
-            </ul>
-        <% end %>
 		<%- # ================Home Banner Area =================-%>
         <section class="banner_area">
             <div class="box_1620">
-				<div class="text-center">
+				<div class="banner_inner d-flex align-items-center">
 					<div class="container">
 						<div class="banner_content text-center">
-							<h2> Viestieditori</h2>
+							<h2> Kirjautuminen </h2>
 						</div>
 						<div class="main_title">
-							<p>Tämän lomakeen avulla voit muokkaa jo oleva viesti</p>
-                                                        <p><%= link_to "<- Palaa ajankohtaista-sivulle", root_path %></p>
+							<p>Lisää ominaisuksia: 'Lähetä uusi viesti', 'Viestieditori' ja 'Viesin poistaminen' ovat näkyvissä, kun käyttäjä on kirjautuna. </p> 
 						</div>
 					</div>
 				</div>
@@ -21,31 +15,26 @@
         </section>
         <%- # ================End Home Banner Area =================-%>
 
-        <%- # ================Blog Area =================-%>
-        <section class="blog_area single-post-area p-120">
-            <div class="container">
-                <div class="comment-form">
-                    <h3>Muokkaa viesti</h3>
-                        <%= form_with model: @new, url: { action: "update" }, method: "put" do |edit_form| %>
-                            <%= fields_for @itemid do |f| %>
-                                <div class="form-group">
-                                    <%= f.text_field :title, :class => 'form-control mb-10' %>
-                                </div>
-                                <div class="form-group">
-                                    <%= f.text_area :description, :class => 'form-control mb-10' %>
-                                </div>
-                            <%= edit_form.submit "Julkaista", :class => 'primary-btn submit_btn' %>
-
-
-                            <% end %>
+            <div class="text-center">
+                <div class="form-signin">
+                        <%= form_with  model: @session, url: login_path do |f| %>
+                            <div class="form-group">
+                                <%= f.text_field :username, class: 'form-control mb-10', placeholder: 'User name' %>
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                     Testi käyttääjä on: test
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <%= f.password_field :password, class: 'form-control mb-10', placeholder: 'Password' %>
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                     Testi käyttäjän salasana on: test
+                                </small>
+                            </div>
+                        <%= f.submit "Kirjaudu", :class => 'primary-btn submit_btn' %>
                         <% end %>
-
-
-
                 </div>
+                <p> <%= link_to '<- Palaa ajankohtaista-sivulle', root_path %> </p>
             </div>
-        </section>
-        <%- # ================Blog Area =================-%>
 
         <%- # ================Footer Area =================-%>
         <footer class="footer_area p_120">
