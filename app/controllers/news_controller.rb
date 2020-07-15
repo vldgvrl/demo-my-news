@@ -56,7 +56,7 @@ class NewsController < ApplicationController
 
     def edit
         if @itemid.user != current_user
-            flash[:danger] = "Estetty. Ei ole oikeuksia."
+            flash[:danger] = "Estetty. Ei ole oikeutta."
             redirect_to root_path
         end
     end
@@ -74,7 +74,7 @@ class NewsController < ApplicationController
                 redirect_to root_path
             end
         else
-            flash[:danger] = "Estetty. Poistaminen ei onnistunut. Ei ole oikeuksia."
+            flash[:danger] = "Estetty. Poistaminen ei onnistunut. Ei ole käyttöoikeuksia."
         end
     end
 

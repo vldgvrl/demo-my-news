@@ -1,9 +1,6 @@
 		
 		<%- # ================Home Banner Area =================-%>
         <section class="banner_area">
-            <div class="box_1620">
-				<div class="text-center">
-					<div class="container">
 						<div class="banner_content text-center">
 							<h2>Ajankohtaista </h2>
 						</div>
@@ -15,9 +12,6 @@
                                                             <%= link_to "Kirjaudu ulos", logout_path, method: :delete %>
                                                         <% end %>
 						</div>
-					</div>
-				</div>
-            </div>
         </section>
         <%- # ================End Home Banner Area =================-%>
 
@@ -31,23 +25,13 @@
                 <div class="row">
                     <div class="col-lg-8 posts-list">
                         <% @newsitems.each do |newsitem| %>
-                        <div class="navigation-area">
-                            <ul>
-                              <% if logged_in? %>
-                                <li><%= link_to 'Muokkaa', edit_news_path(newsitem) %></li>
-                                <li><%= link_to 'Poista', news_path(newsitem), method: :delete, data: {confirm: "Oletko varma että haluat poistaa tämän julkaisun?"} %></li>
-                              <% end %>
-                            </ul>
-                        </div>
-                            <div class="single-post-area p-4 m-5">
+                            <div class="single-post-area">
                                 <div class="row">
                                     <div class="col-lg-3  col-md-3">
                                         <div class="blog_info text-right mb-5">
-                                            <ul class="blog_meta list">
-                                                <li><%= newsitem.created_at.strftime("%d.%m.%y") %><i class="lnr lnr-calendar-full"></i></li>
-                                                <li><%= newsitem.created_at.strftime("klo %H:%M") %><i class="lnr lnr-calendar-full"></i></li>
+                                            <%= newsitem.created_at.strftime("%d.%m.%y") %><i class="lnr lnr-calendar-full"></i>
+                                            <%= newsitem.created_at.strftime("klo %H:%M") %><i class="lnr lnr-calendar-full"></i>
 
-                                            </ul>
                                         </div>
                                     </div>
                                     <div class="col-lg-9 col-md-9 blog_details">
@@ -59,6 +43,14 @@
                                     <%= newsitem.description %>
                                 </p>
                             </div>
+                        </div>
+                        <div class="navigation-area">
+                            <ul>
+                              <% if logged_in? %>
+                                <li><%= link_to 'Muokkaa', edit_news_path(newsitem) %></li>
+                                <li><%= link_to 'Poista', news_path(newsitem), method: :delete, data: {confirm: "Oletko varma että haluat poistaa tämän julkaisun?"} %></li>
+                              <% end %>
+                            </ul>
                         </div>
                         <% end %>
                 </div>
