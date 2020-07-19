@@ -39,21 +39,16 @@ class NewsController < ApplicationController
         puts params
         puts params[:new]
 
-        if @itemid.picture.attached?
+        #if there is no picture added, leave the picture that already exist
+        if @itemid.picture.attached? && params[:new][:picture].blank?
 
-            #if there is no picture added, leave the picture that already exist
-            if params[:new][:picture].blank?
-                
                 # Update only title and description
                 @itemid.update(title: params[:new][:title], description: params[:new][:description])
-
-            end
 
         else
             @itemid.update(title: params[:new][:title], description: params[:new][:description], picture: params[:new][:picture])
 
         end
-        puts 'For some reason if was not pass'
 
         if @itemid.save
             flash[:success] = "Päivitetty onnistuneesti"
