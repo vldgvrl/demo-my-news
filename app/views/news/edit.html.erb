@@ -26,8 +26,12 @@
             <div class="container">
                 <div class="comment-form">
                     <h3>Muokkaa viesti</h3>
-                        <%= form_with model: @new, url: { action: "update" }, method: "put" do |edit_form| %>
-                            <%= fields_for @itemid do |f| %>
+                        <div class="feature-img">
+                            <% if @itemid.picture.attached? %>
+                                <img class="img-fluid" src="<%=(url_for(@itemid.picture)) %>">
+                            <% end %>
+                        </div>
+                        <%= form_with model: @itemid, url: { action: "update" }, method: "put" do |f| %>
                                 <div class="form-group">
                                     <%= f.text_field :title, :class => 'form-control mb-10' %>
                                 </div>
@@ -36,10 +40,8 @@
                                     <%= f.file_field :picture %><br>
                                     <%= f.text_area :description, :class => 'form-control mb-10' %>
                                 </div>
-                            <%= edit_form.submit "Julkaista", :class => 'primary-btn submit_btn' %>
+                            <%= f.submit "Julkaista", :class => 'primary-btn submit_btn' %>
 
-
-                            <% end %>
                         <% end %>
 
 

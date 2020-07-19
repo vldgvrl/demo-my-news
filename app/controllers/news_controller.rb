@@ -12,12 +12,9 @@ class NewsController < ApplicationController
         @itemid = New.find(params[:id])
     end
 
-    def new
-        @newsitem = New.new
-    end
  
     def create
-        @newsitem = New.new(title: params[:title], description: params[:description])
+        @newsitem = New.new(item_parameters)
         @newsitem.user = current_user
         if @newsitem.save
             puts "Yes it was saved"
@@ -39,19 +36,31 @@ class NewsController < ApplicationController
         puts params[:new][:title]
         puts params[:new][:description]
         puts 'Json string'
+        puts params
         puts params[:new]
-        if @itemid.user == current_user
-            @itemid.update(title: params[:new][:title], description: params[:new][:description])
-            if @itemid.save
-                flash[:success] = "Päivitetty onnistuneesti"
-            else
-                flash[:warning] = "Virhe. Viesti ei ole päivitetty!"
+
+        if @itemid.picture.attached?
+
+            #if there is no picture added, leave the picture that already exist
+            if params[:new][:picture].blank?
+                
+                # Update only title and description
+                @itemid.update(title: params[:new][:title], description: params[:new][:description])
+
             end
-            redirect_to root_path
+
         else
-            flash[:danger] = "Estetty. Ei ole oikeuksia."
-            redirect_to edit_news_path
+            @itemid.update(title: params[:new][:title], description: params[:new][:description], picture: params[:new][:picture])
+
         end
+        puts 'For some reason if was not pass'
+
+        if @itemid.save
+            flash[:success] = "Päivitetty onnistuneesti"
+        else
+            flash[:warning] = "Virhe. Viesti ei ole päivitetty!"
+        end
+        redirect_to root_path
     end
 
     def edit
@@ -80,10 +89,12 @@ class NewsController < ApplicationController
 
 
     private
-        def news_params
-            puts "editing parameters"
-            params.permit(:title, :description)
-            puts "parameters pass. Good"
+        def new_parameters
+            params.require(:new).permit(:title, :description, :picture)
+        end
+
+        def item_parameters
+            params.permit(:title, :description, :picture)
         end
 
     
