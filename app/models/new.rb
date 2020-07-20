@@ -4,5 +4,4 @@ class New < ActiveRecord::Base
     validates :title, presence: true, length: { minimum: 3, maximum: 120 }
     belongs_to :user
     has_one_attached :picture
-
 end

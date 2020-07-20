@@ -2,10 +2,16 @@ class NewsController < ApplicationController
 
     before_action :require_user, except: [:index]
 
-    before_action :set_item, only: [:update, :edit, :show, :destroy]
+    before_action :set_item, only: [:update, :edit, :destroy]
 
     def index
-        @newsitems = New.order("created_at DESC")
+        puts '============================TRACK NAME================================='  
+        puts params[:search]
+        if params[:search]
+            @results = New.where("title LIKE ?", "%#{params[:search]}%").or(New.where("description LIKE ?", "%#{params[:search]}%"))
+        else
+            @results = New.order("created_at DESC")
+        end
     end
 
     def set_item
@@ -92,5 +98,9 @@ class NewsController < ApplicationController
             params.permit(:title, :description, :picture)
         end
 
+        def search_params
+            params.permit(:search)
+        end
+        
     
 end
