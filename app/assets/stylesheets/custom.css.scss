@@ -462,7 +462,15 @@ button:focus {
 
 .blog_info {
   font-size: small;
+  margin-bottom: 30px;
   padding-top: 30px; }
+    @media (max-width: 768px) {
+        .blog_info {
+          font-size: small;
+          margin: 0px;
+          padding: 0px;
+        }
+    }
   .blog_info .post_tag {
     padding-bottom: 20px; }
     .blog_info .post_tag a {
@@ -492,7 +500,9 @@ button:focus {
   max-width: 100%; }
 
 .blog_details {
-  padding-top: 20px; }
+  padding-top: 20px; 
+  padding-left: 50px;   
+  }
   .blog_details h2 {
     font-size: 24px;
     line-height: 36px;
@@ -883,6 +893,11 @@ button:focus {
     max-width: 500px;
     margin: auto;
     padding: 20px;
+  }
+  .single-post-area .feature-img img{
+    display: block;
+    margin: auto;
+    padding: 10px;
   }
   .comment-form h4 {
     text-align: center;
