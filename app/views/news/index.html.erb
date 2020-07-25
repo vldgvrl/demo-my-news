@@ -40,8 +40,8 @@
                                 <div class="row">
                                     <div class="col-lg-3  col-md-3">
                                         <div class="blog_info text-right">
-                                            <%= newsitem.created_at.strftime("%d.%m.%y") %><i class="lnr lnr-calendar-full"></i>
-                                            <%= newsitem.created_at.strftime("klo %H:%M") %><i class="lnr lnr-calendar-full"></i>
+                                            <i class="fa fa-calendar"></i><%= newsitem.created_at.strftime("%d.%m.%y") %>
+                                            <i class="fa fa-clock-o"></i><%= newsitem.created_at.strftime("%H:%M") %>
 
                                         </div>
                                     </div>
