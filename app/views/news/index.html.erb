@@ -47,8 +47,10 @@
                         <% @results.each do |newsitem| %>
                             <div class="single-post-area">
                                 <div class="feature-img">
-                                    <% if newsitem.picture.attached? %>
-                                        <img class="img-fluid" src="<%=(url_for(newsitem.picture)) %>">
+                                    <% begin %>
+                                        <%= image_tag  url_for(newsitem.picture), class:"img-fluid" %>
+                                    <% rescue => e%>
+                                        <%= image_tag  'no_photo_available.png', class:"img-fluid" %>
                                     <% end %>
                                 </div>
                                 <div class="row">
