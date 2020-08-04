@@ -56,6 +56,11 @@ class NewsController < ApplicationController
 
         end
 
+        if params[:new][:imagename]
+            @itemid.update(picture_path: params[:new][:imagename])
+            puts 'item local picture was updated'
+        end
+
         if @itemid.save
             flash[:success] = "Päivitetty onnistuneesti"
         else
@@ -63,6 +68,7 @@ class NewsController < ApplicationController
         end
         redirect_to root_path
     end
+
 
     def edit
         if @itemid.user != current_user
@@ -87,7 +93,6 @@ class NewsController < ApplicationController
             flash[:danger] = "Estetty. Poistaminen ei onnistunut. Ei ole käyttöoikeuksia."
         end
     end
-
 
     private
         def new_parameters

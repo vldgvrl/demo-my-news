@@ -33,13 +33,20 @@
                         </div>
                         <%= form_with model: @itemid, url: { action: "update" }, method: "put" do |f| %>
                                 <div class="form-group">
+                                    <%= f.label "Kuva" %>
+                                    <%= f.file_field :picture %>
+                                    <%= link_to "Poistaa kuva", @itemid.picture.purge, data: {confirm: "Oletko varma että haluat poistaa kuva?"} %><br>
+                                    <% if @current_user.id == 1 %>
+                                        <%= f.text_field :imagename, class: 'form-control mb-10' %>
+                                    <% end %>
+                                </div>
+                                <div class="form-group">
                                     <%= f.text_field :title, :class => 'form-control mb-10' %>
                                 </div>
                                 <div class="form-group">
-                                    <%= f.label "Picture" %>
-                                    <%= f.file_field :picture %><br>
                                     <%= f.text_area :description, :class => 'form-control mb-10' %>
                                 </div>
+                                
                             <%= f.submit "Julkaista", :class => 'primary-btn submit_btn' %>
 
                         <% end %>

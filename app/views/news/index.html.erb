@@ -50,7 +50,7 @@
                                     <% begin %>
                                         <%= image_tag  url_for(newsitem.picture), class:"img-fluid" %>
                                     <% rescue => e%>
-                                        <%= image_tag  'no_photo_available.png', class:"img-fluid" %>
+                                        <%= image_tag  url_for(newsitem.picture_path), class:"img-fluid" %>
                                     <% end %>
                                 </div>
                                 <div class="row">

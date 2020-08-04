@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :news, only: [:index, :show, :new, :create, :edit, :update, :destroy, :picture]
+  resources :news, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   root 'news#index'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
