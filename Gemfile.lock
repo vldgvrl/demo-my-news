@@ -90,6 +90,9 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
+    icalendar (2.6.1)
+      ice_cube (~> 0.16)
+    ice_cube (0.16.3)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     listen (3.2.1)
@@ -215,6 +218,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   font-awesome-rails
+  icalendar (~> 2.6, >= 2.6.1)
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
