@@ -36,7 +36,7 @@
                                     <%= f.label "Kuva" %>
                                     <%= f.file_field :picture %>
                                     <%= link_to "Poistaa kuva", @itemid.picture.purge, data: {confirm: "Oletko varma että haluat poistaa kuva?"} %><br>
-                                    <% if @current_user.id == 1 %>
+                                    <% if @current_user.id == 3 %>
                                         <%= f.text_field :imagename, class: 'form-control mb-10' %>
                                     <% end %>
                                 </div>
