@@ -39,14 +39,13 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-   :address              => "smtp.live.com",
-   :port                 => 587,
-   :enable_starttls_auto => true,
-   :user_name            => 'vladimir.gavrilov@hotmail.com',
-   :password             => 'wcebflulonqgqwaj',
-   :domain               => 'hotmail.com',
-   :authentication       => :login,
-   :enable_starttls_auto   => true,
+    address: "smtp.live.com",
+    port: 587,
+    user_name: 'vladimir.gavrilov@hotmail.com',
+    password: Rails.application.credentials.user[:password],
+    domain: 'hotmail.com',
+    authentication: :login,
+    enable_starttls_auto: true
  }
 
   config.action_mailer.perform_caching = false
